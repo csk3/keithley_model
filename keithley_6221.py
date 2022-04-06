@@ -1,8 +1,9 @@
 import pyvisa as py
-address_6221 = 'GPIB0::12::INSTR'
+
+# address_6221 = 'GPIB0::12::INSTR'
+
 class keithley_6221:
-    def __init__(self):
-        
+    def __init__(self,address_6221):
         rm = py.ResourceManager()
         self.equ_6221 = rm.open_resource(address_6221)
         
@@ -27,7 +28,7 @@ class keithley_6221:
         else :
             self.equ_6221.write("outp off")
 
-    def wave_sin(self,amplitude, frequency, offset):
+    def wave_sin(self,amplitude, frequency, offset=0):
         self.equ_6221.write("sour:wave:func sin")
         self.equ_6221.write("sour:wave:ampl {}".format(amplitude))
         self.equ_6221.write("sour:wave:freq {}".format(frequency))

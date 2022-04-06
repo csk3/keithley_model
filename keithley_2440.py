@@ -1,9 +1,9 @@
 import pyvisa as py
 
-address_2440 = 'GPIB0::22::INSTR' # enter the keithley 2440 address here
+# address_2440 = 'GPIB0::22::INSTR' # enter the keithley 2440 address here
 
 class keithley_2440:
-    def __init__(self):
+    def __init__(self,address_2440):
         rm = py.ResourceManager()
         self.equ_2440 = rm.open_resource(address_2440)
         self.equ_2440.write("*rst")
